@@ -322,7 +322,8 @@
     "ApplicationLoadBalancer" : {
       "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties" : {
-        "Subnets" : { "Ref" : "Subnets"}
+        "Subnets" : { "Ref" : "Subnets"},
+        "SecurityGroups": { "Ref": "LBSecurityGroup" }
       }
     },
 
@@ -369,8 +370,24 @@
         } ],
         "VpcId" : { "Ref" : "VpcId" }
       }
-    }
+    },
+    "LBSecurityGroup" : {
+      "Type" : "AWS::EC2::SecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Enable HTTP access on the inbound port",
+        "SecurityGroupIngress" : [ {
+          "IpProtocol" : "tcp",
+          "FromPort" : "80",
+          "ToPort" : "80",
+          "CidrIp": "0.0.0.0/0"
+        }
+        ],
+        "VpcId" : { "Ref" : "VpcId" }
+      }
+    }    
   },
+
+
 
   "Outputs" : {
     "URL" : {

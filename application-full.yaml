@@ -13,7 +13,7 @@
 
     "Subnets" : {
       "Type" : "List<AWS::EC2::Subnet::Id>",
-      "Default": ["subnet-0d304c99d504f1e03","subnet-09884fd8198e657fc"],
+      "Default": "subnet-0d304c99d504f1e03,subnet-09884fd8198e657fc",
       "Description" : "The list of SubnetIds in your Virtual Private Cloud (VPC)",
       "ConstraintDescription" : "must be a list of at least two existing subnets associated with at least two different availability zones. They should be residing in the selected Virtual Private Cloud."
     },
@@ -30,6 +30,7 @@
     "KeyName" : {
       "Description" : "Name of an existing EC2 KeyPair to enable SSH access to the instances",
       "Type" : "AWS::EC2::KeyPair::KeyName",
+      "Default" : "ssh-key",
       "ConstraintDescription" : "must be the name of an existing EC2 KeyPair."
     },
 
@@ -321,7 +322,8 @@
     "ApplicationLoadBalancer" : {
       "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties" : {
-        "Subnets" : { "Ref" : "Subnets"}
+        "Subnets" : { "Ref" : "Subnets"},
+        "SecurityGroups": { "Ref": "LBSecurityGroup" }
       }
     },
 
@@ -368,8 +370,24 @@
         } ],
         "VpcId" : { "Ref" : "VpcId" }
       }
-    }
+    },
+    "LBSecurityGroup" : {
+      "Type" : "AWS::EC2::SecurityGroup",
+      "Properties" : {
+        "GroupDescription" : "Enable HTTP access on the inbound port",
+        "SecurityGroupIngress" : [ {
+          "IpProtocol" : "tcp",
+          "FromPort" : "80",
+          "ToPort" : "80",
+          "CidrIp": "0.0.0.0/0"
+        }
+        ],
+        "VpcId" : { "Ref" : "VpcId" }
+      }
+    }    
   },
+
+
 
   "Outputs" : {
     "URL" : {
