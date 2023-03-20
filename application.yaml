@@ -10,7 +10,7 @@
       "Description" : "VpcId of your existing Virtual Private Cloud (VPC)",
       "ConstraintDescription" : "must be the VPC Id of an existing Virtual Private Cloud."
     },
-     "VpcSGId" : {
+     "VPCSecurityGroupId" : {
       "Type" : "AWS::EC2::SecurityGroup::Id",
       "Default": "sg-046b62f8a6167234d",
       "Description" : "ID of your VPC Default Security Group",
@@ -329,7 +329,7 @@
       "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties" : {
         "Subnets" : { "Ref" : "Subnets"},
-        "SecurityGroups": [{ "Ref": "VPCSecurityGroup" }]
+        "SecurityGroups": [{ "Ref": "VPCSecurityGroupId" }]
       }
     },
 
