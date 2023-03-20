@@ -323,7 +323,7 @@
       "Type" : "AWS::ElasticLoadBalancingV2::LoadBalancer",
       "Properties" : {
         "Subnets" : { "Ref" : "Subnets"},
-        "SecurityGroups": { "Ref": "LBSecurityGroup" }
+        "SecurityGroups": [{ "Ref": "LBSecurityGroup" }]
       }
     },
 
