@@ -250,7 +250,7 @@
             "packages" : {
               "yum" : {
                 "httpd"             : [],
-                "yum"               : []
+                "php"               : []
               }
             },
 
