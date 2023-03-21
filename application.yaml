@@ -259,7 +259,7 @@
                 "content" : { "Fn::Join" : ["\n", [
                "<html>\n",
                                                 "  <head>\n",
-                                                "    <title>AWS CloudFormation PHP Sample</title>\n",
+                                                "    <title>AWS CloudFormation Sample</title>\n",
                                                 "    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\">\n",
                                                 "  </head>\n",
                                                 "  <body>\n",
