@@ -426,7 +426,7 @@
 
   "Outputs" : {
     "URL" : {
-      "Description" : "URL of the website",
+      "Description" : "URL of the website!",
       "Value" :  { "Fn::Join" : [ "", [ "http://", { "Fn::GetAtt" : [ "ApplicationLoadBalancer", "DNSName" ]}]]}
     }
   }
